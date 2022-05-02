@@ -1,4 +1,5 @@
 import random
+import math
 
 def adiciona_em_ordem(pais, d, lista):
     n = 0
@@ -43,3 +44,10 @@ def sorteia_letra(p, rest):
         return ra
     else:
         return random.choice(ra)
+
+def haversine(r, p1,l1,p2,l2):
+    aux1 = (math.sin( math.radians((p2-p1)/2 )))**2
+    aux2 = math.cos(math.radians(p1))*math.cos(math.radians(p2))
+    aux3 = (math.sin( math.radians((l2-l1)/2 )))**2
+    d = 2*r*math.asin( (aux1 + aux2*aux3)**(1/2) )
+    return d

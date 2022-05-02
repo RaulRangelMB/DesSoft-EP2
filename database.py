@@ -1,3 +1,4 @@
+import scriptsbase as sb
 EARTH_RADIUS = 6371
 
 DADOS = {
@@ -3814,3 +3815,5 @@ DADOS = {
     }
   }
 }
+
+normalizada = sb.normaliza(DADOS)
