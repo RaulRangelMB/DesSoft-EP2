@@ -1,10 +1,9 @@
-import telnetlib
 from ScriptsBase import normalizadatabase
 from database import DADOS, EARTH_RADIUS
 
 tentativas = 20
 raio = EARTH_RADIUS
-paises = normalizadatabase(DADOS)
+paises = normalizadatabase.normaliza(DADOS)
 
 while tentativas > 0:
     guess = input("adivinhe um país: ")
