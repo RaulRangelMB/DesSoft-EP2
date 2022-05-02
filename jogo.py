@@ -1,9 +1,9 @@
-from ScriptsBase import normalizadatabase
+import scriptsbase as sb
 from database import DADOS, EARTH_RADIUS
 
 tentativas = 20
 raio = EARTH_RADIUS
-paises = normalizadatabase.normaliza(DADOS)
+paises = sb.normaliza(DADOS)
 
 while tentativas > 0:
     guess = input("adivinhe um país: ")

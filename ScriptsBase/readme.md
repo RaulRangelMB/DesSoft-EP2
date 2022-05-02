@@ -1,1 +1,0 @@
-Scripts Base Python Academy
