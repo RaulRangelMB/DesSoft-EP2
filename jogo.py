@@ -6,9 +6,12 @@ raio = EARTH_RADIUS
 paises = sb.normaliza(DADOS)
 
 while tentativas > 0:
-    guess = input("adivinhe um país: ")
+    guess = input("adivinhe um país: ").lower()
     if guess not in paises:
-        print("nao")
+        print("País desconhecido, tente outro...")
+        
     else:
-        print("sim")
-    tentativas -= 1
+        print("Sim")
+        tentativas -= 1
+        print(tentativas)
+
