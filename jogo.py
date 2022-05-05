@@ -49,6 +49,7 @@ while jogar == 's':
         
         # Fear
         elif guess == 'humberto':
+            t = 1
             # Mensagens antes de aparecer o boss
             phrases = ['\n*The ground starts shaking*\n', '*Your Soul Cries in fear*\n', '*It´s too late now*\n']
             for i in phrases:
@@ -65,22 +66,25 @@ while jogar == 's':
             set_rc = []  # Set C de respostas
             set_rd = []  # Set D de respostas
 
-            while god_hp > 0 or pl_hp > 0:
-                print('Humberto place holder')
+            while god_hp > 0:
+                print('Humberto place holder\n')
                 resp = input('')
 
                 if resp == 'teste':
                     god_hp -= 10
+                elif resp == 'morte':
+                    pl_hp -= 10
 
                 if god_hp <= 0:
                     print('\nChama o Professor Resina então...\n')
                     time.sleep(2)
                     print('UAU! Parabéns, você realmente ganhou! Aqui está o premio:')
                     time.sleep(1)
-                    print('O país sorteado foi: {} :)'.format(pais_sorte))
+                    print('O país sorteado foi: {} :)\n'.format(pais_sorte))
                 elif pl_hp <= 0:
                     print('\nSe FUD**!\n')
                     t -= 1
+                    break
 
         # Inventario
         elif guess == 'inventario':
