@@ -1,4 +1,5 @@
-import scriptsbase as sb
+import scriptsbase as sb    
+import time
 from database import DADOS, EARTH_RADIUS
 
 raio = EARTH_RADIUS
@@ -48,7 +49,38 @@ while jogar == 's':
         
         # Fear
         elif guess == 'humberto':
-            print('\noh no\n')
+            # Mensagens antes de aparecer o boss
+            phrases = ['\n*The ground starts shaking*\n', '*Your Soul Cries in fear*\n', '*It´s too late now*\n']
+            for i in phrases:
+                print(i)
+                time.sleep(2)
+            god_hp = 10  # HP do Humberto
+            god_r = 0    # Nível de Raiva do Humberto
+
+            pl_hp = 10   # HP do player
+
+            # Pre-made options of answer (1 certa / 2 erradas)
+            set_ra = []  # Set A de respostas 
+            set_rb = []  # Set B de respostas
+            set_rc = []  # Set C de respostas
+            set_rd = []  # Set D de respostas
+
+            while god_hp > 0 or pl_hp > 0:
+                print('Humberto place holder')
+                resp = input('')
+
+                if resp == 'teste':
+                    god_hp -= 10
+
+                if god_hp <= 0:
+                    print('\nChama o Professor Resina então...\n')
+                    time.sleep(2)
+                    print('UAU! Parabéns, você realmente ganhou! Aqui está o premio:')
+                    time.sleep(1)
+                    print('O país sorteado foi: {} :)'.format(pais_sorte))
+                elif pl_hp <= 0:
+                    print('\nSe FUD**!\n')
+                    t -= 1
 
         # Inventario
         elif guess == 'inventario':
