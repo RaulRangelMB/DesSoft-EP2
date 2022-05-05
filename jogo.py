@@ -14,7 +14,7 @@ while jogar == 's':
     t = 20
     pais_sorte = sb.sorteia_pais(paises)
 
-    tent_paises = {}    # Países Digitados
+    tent_paises = []    # Países Digitados
     dicas = {}          # Dicas comprada com sua informação
 
     cap = paises[pais_sorte]['capital'].strip()
@@ -32,10 +32,6 @@ while jogar == 's':
             break
 
         guess = input("Adivinhe um país: ").lower()
-        
-        print()
-        if guess in tent_paises:
-            print('\nJá tentou esse país, perdeu ponto por ser boboca!\n\n')
 
         # Vitória
         if guess == pais_sorte:
@@ -49,7 +45,12 @@ while jogar == 's':
                 print('Você é fraco. O país era {0}'.format(pais_sorte))
                 t = 0
                 break
+        
+        # Fear
+        elif guess == 'humberto':
+            print('\noh no\n')
 
+        # Inventario
         elif guess == 'inventario':
             print('\nDistâncias: ')
             for i in tent_paises:
@@ -146,15 +147,21 @@ while jogar == 's':
         # Pais in paises
         else:
             t -= 1
-            tent_paises[guess] = sb.haversine(raio, paises[guess]['geo']['latitude'], paises[guess]['geo']['longitude'], paises[pais_sorte]['geo']['latitude'], paises[pais_sorte]['geo']['longitude'])
+            d = sb.haversine(raio, paises[guess]['geo']['latitude'], paises[guess]['geo']['longitude'], paises[pais_sorte]['geo']['latitude'], paises[pais_sorte]['geo']['longitude'])
+            if [guess, d] not in tent_paises:
+                tent_paises = sb.adiciona_em_ordem(guess, d, tent_paises)
+            else:
+                print('\n\nJá tentou esse país, perdeu ponto por ser boboca!\n\n')
+
             if t != 0:
                 print('Você tem : {} tentativas sobrando!\n'.format(t))
+        
 
-        if guess != 'inventario':
-            if tent_paises != {}:
+        if guess != 'inventario' and guess != 'humberto':
+            if tent_paises != []:
                 print("Distâncias:")
                 for i in tent_paises:
-                    print('     {} --> {:.2f} km'.format(i, tent_paises[i]))
+                    print('     {} --> {:.2f} km'.format(i[0], i[1]))
             if dicas != {}:
                 print("Dicas:")
                 for i in dicas:
