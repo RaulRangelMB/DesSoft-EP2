@@ -3816,4 +3816,154 @@ DADOS = {
   }
 }
 
-normalizada = sb.normaliza(DADOS)
+import time
+import random
+
+pais_h = 'humberto'
+
+paises = sb.normaliza(DADOS)
+
+pais_sorte = sb.sorteia_pais(paises)
+
+
+
+god_hp = 10  # HP do Humberto
+god_r = 2    # Nível de Raiva do Humberto
+
+pl_hp = 10   # HP do player
+
+# Pre-made options of answer (1 certa / 2 erradas)
+set_ra = ["1. Prefiro MODSIM", "2. Achei um erro no servidor", "3. "]  # Set A de respostas (Resp: 2)
+set_rb = ["1. Seu código está deselegante", "2. ", "3. "]  # Set B de respostas (Resp: 1)
+set_rc = ["1.", "2.", "3. Hoje é Segunda, não é fim de semana"]  # Set C de respostas (Resp: 3)
+set_rd = ["1. Me atrasei por que eu tava dormindo, desculpa.", "2. ", "3. "]  # Set D de respostas (Resp: 1)
+sets_dialg = [set_ra, set_rb, set_rc, set_rd] # Sets por turno
+
+# Humberto Interactions for sets
+hset_ra = ["E eu prefiro ta em casa, vai fazer código vai", "Lá vem, LÁ VEM!! Certeza que é parêntesis!", ""]
+hset_rb = ["", "", ""]
+hset_rc = ["", "", "EU DISSE BOM FIM DE SEMANA!!!! BOM FIM DE SEMANA"]
+hset_rd = ["Pelo amor de deus, no último ano do meu mestrado eu dormi duas horas só... Desculpinha viu", "", ""]
+sets_dialgh = [hset_ra, hset_rb, hset_rc, hset_rd]
+
+#Respostas Certas
+resp_cert = [2,1,3,1]
+
+# Escolheu dica ao enfrentar Humberto
+dica_diag = [
+  "Estágiario da Google não precisa de dica",
+  "a",
+  "b"
+]
+
+# Rounds
+def round(cont, pl_hp, god_hp, god_r):
+  
+  #=======================================  HP E RAIVA NÃO ESTÃO MUDANDO  =============================================================
+  #                                                    ;-;
+
+  # Interação com diálogo
+  continuar = True
+  while continuar:
+    choice = input("[1 | Confrontá-lo.]  -  [2 | Pedir dica ao Humberto.]\n")
+
+    # Opção de diálogo
+    if choice == '1':
+      # Set de Diálogos
+      print()
+      for diag in sets_dialg[cont]:
+        print(diag)
+        time.sleep(0.5)
+      print()
+      resp = int(input('Diga algo ao Homem: \n'))
+      print()
+      break
+
+    # Opção de Dica
+    elif choice == '2':
+      print(random.choice(dica_diag)+'\n')
+      time.sleep(1)
+      
+    # None
+    else:
+      print('Vou ter que repetir mesmo?\n')
+      time.sleep(1)
+
+
+  # Respostas do Humberto
+
+
+  # Resp. Errada
+  if resp != resp_cert[cont]:   
+    print('{}\n'.format(sets_dialgh[cont][resp-1]))
+    time.sleep(2)
+
+    print('\n**Resposta errada ;-;**\n')
+    time.sleep(2)
+    print('Você recebeu 4 de dano, cuidado...\n')
+    pl_hp -= 4
+
+    time.sleep(2)
+
+  # Resp. Certa
+  elif resp == 2:
+    print('{}\n'.format(sets_dialgh[cont][1]))
+    time.sleep(3)
+    print('\n**ISSO! VOCÊ SABE MESMO IRRITAR O HUMBERTO :)**\n')
+    time.sleep(2)
+    print('Continue Assim!\n')
+    time.sleep(3)
+    
+    god_hp -= god_r
+    god_r += 2
+
+    
+
+
+
+
+
+def h_act():
+  cont = 0
+  # Mensagens antes de aparecer o boss
+  phrases = ['\n*The ground starts shaking*\n', '*Your Soul Cries in fear*\n', '*It´s too late now*\n']
+  for i in phrases:
+      print(i)
+      time.sleep(2)
+  
+  while god_hp > 0:
+
+    # with open('samba.txt', 'r') as arq:
+    #   linhas = arq.readlines()
+
+    # for linha in linhas:
+    #   print(linha)
+
+    # Encounter
+    print('Humberto PlaceHolder')
+    time.sleep(2)
+    print('\nFala do Humberto\n\n')
+    time.sleep(1)
+    print('HP de Humberto: {}'.format(god_hp))
+    print('Raiva de Doisberto: {}\n\n'.format(god_r))
+    time.sleep(2)
+
+    print('Seu HP: {}\n'.format(pl_hp))
+    time.sleep(2)
+
+    round(cont, pl_hp, god_hp, god_r) 
+       
+    
+    if god_hp <= 0:
+        print('\nChama o Professor Resina então...\n')
+        time.sleep(2)
+        print('UAU! Parabéns, você realmente ganhou! Aqui está o premio:')
+        time.sleep(1)
+        print('O país sorteado foi: {} :)\n'.format(pais_sorte))
+    elif pl_hp <= 0:
+        print('\nSe FUD**!\n')
+        t -= 1
+        break
+h_act()
+
+

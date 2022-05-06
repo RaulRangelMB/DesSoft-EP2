@@ -1,19 +1,16 @@
 import scriptsbase as sb    
-import time
-from database import DADOS, EARTH_RADIUS
+from database import DADOS, EARTH_RADIUS, pais_h, h_act, pais_sorte, paises
 
 raio = EARTH_RADIUS
-paises = sb.normaliza(DADOS)
 jogar = 's'
 
-print('\nBem-Vindo ao EP2 - Jogo dos Países\n\nComandos:')
+print('\nBem-Vindo ao EP2 - Jogo dos Países\nFeito para nosso querido professor, qual era o nome dele mesmo?...\n\nComandos:')
 print('     dicas       - Acesso ao mercado de dicas ($)')
 print('     desisto     - Desistir da rodada (⌣̩̩́  _⌣̩̩̀ )')
 print('     inventario  - Mostra suas tentativas e dicas compradas')
 
 while jogar == 's':
     t = 20
-    pais_sorte = sb.sorteia_pais(paises)
 
     tent_paises = []    # Países Digitados
     dicas = {}          # Dicas comprada com sua informação
@@ -47,44 +44,9 @@ while jogar == 's':
                 t = 0
                 break
         
-        # Fear
-        elif guess == 'humberto':
-            t = 1
-            # Mensagens antes de aparecer o boss
-            phrases = ['\n*The ground starts shaking*\n', '*Your Soul Cries in fear*\n', '*It´s too late now*\n']
-            for i in phrases:
-                print(i)
-                time.sleep(2)
-            god_hp = 10  # HP do Humberto
-            god_r = 0    # Nível de Raiva do Humberto
-
-            pl_hp = 10   # HP do player
-
-            # Pre-made options of answer (1 certa / 2 erradas)
-            set_ra = []  # Set A de respostas 
-            set_rb = []  # Set B de respostas
-            set_rc = []  # Set C de respostas
-            set_rd = []  # Set D de respostas
-
-            while god_hp > 0:
-                print('Humberto place holder\n')
-                resp = input('')
-
-                if resp == 'teste':
-                    god_hp -= 10
-                elif resp == 'morte':
-                    pl_hp -= 10
-
-                if god_hp <= 0:
-                    print('\nChama o Professor Resina então...\n')
-                    time.sleep(2)
-                    print('UAU! Parabéns, você realmente ganhou! Aqui está o premio:')
-                    time.sleep(1)
-                    print('O país sorteado foi: {} :)\n'.format(pais_sorte))
-                elif pl_hp <= 0:
-                    print('\nSe FUD**!\n')
-                    t -= 1
-                    break
+        # Interaction
+        elif guess == pais_h:
+            h_act()
 
         # Inventario
         elif guess == 'inventario':
