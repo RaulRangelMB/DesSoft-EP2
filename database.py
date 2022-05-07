@@ -3861,7 +3861,7 @@ def round(cont, pl_hp, god_hp, god_r):
   
   #=======================================  HP E RAIVA NÃO ESTÃO MUDANDO  =============================================================
   #                                                    ;-;
-
+  
   # Interação com diálogo
   continuar = True
   while continuar:
@@ -3964,6 +3964,6 @@ def h_act():
         print('\nSe FUD**!\n')
         t -= 1
         break
-h_act()
+
 
 
