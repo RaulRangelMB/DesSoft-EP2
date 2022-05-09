@@ -3834,25 +3834,28 @@ pl_hp = 10   # HP do player
 
 # Pre-made options of answer (1 certa / 2 erradas)
 set_ra = ["1. Prefiro MODSIM", "2. Achei um erro no servidor", "3. "]  # Set A de respostas (Resp: 2)
-set_rb = ["1. Seu código está deselegante", "2. ", "3. "]  # Set B de respostas (Resp: 1)
-set_rc = ["1.", "2.", "3. Hoje é Segunda, não é fim de semana"]  # Set C de respostas (Resp: 3)
-set_rd = ["1. Me atrasei por que eu tava dormindo, desculpa.", "2. ", "3. "]  # Set D de respostas (Resp: 1)
+set_rb = ["1. Seu código está deselegante!", "2. ", "3. "]  # Set B de respostas (Resp: 1)
+set_rc = ["1. ", "2. ", "3. Hoje é Segunda, não é fim de semana"]  # Set C de respostas (Resp: 3)
+set_rd = ["1. Me atrasei por que eu tava dormindo, desculpa :(", "2. Tava com dúvida em tal questão de matemática...", "3. "]  # Set D de respostas (Resp: 1)
+set_re = ["1. ", "2. ", "3. Copiei seu código mas não rodou"]  # Set D de respostas (Resp: 1)
+
 sets_dialg = [set_ra, set_rb, set_rc, set_rd] # Sets por turno
 
 # Humberto Interactions for sets
 hset_ra = ["E eu prefiro ta em casa, vai fazer código vai", "Lá vem, LÁ VEM!! Certeza que é parêntesis!", ""]
-hset_rb = ["", "", ""]
+hset_rb = ["Vou te contar viu, ", "", ""]
 hset_rc = ["", "", "EU DISSE BOM FIM DE SEMANA!!!! BOM FIM DE SEMANA"]
 hset_rd = ["Pelo amor de deus, no último ano do meu mestrado eu dormi duas horas só... Desculpinha viu", "", ""]
+hset_re = ["", "", "Então você não copiou direito. Vou te falar viu..."]
 sets_dialgh = [hset_ra, hset_rb, hset_rc, hset_rd]
 
 #Respostas Certas
-resp_cert = [2,1,3,1]
+resp_cert = [2,1,3,2,3]
 
 # Escolheu dica ao enfrentar Humberto
 dica_diag = [
   "Estágiario da Google não precisa de dica",
-  "a",
+  "Você ta NERVOSO queridão",
   "b"
 ]
 
