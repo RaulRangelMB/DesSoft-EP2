@@ -21,10 +21,10 @@ while jogar == 's':
     l_cap_tent = []          # Letra da Capital
     c_band_tent = []         # Cores da Bandeira
 
-    while t > 0:
+    while t >= 0:
         # Derrota
         if t == 0:
-            print('Parabéns, você perdeu! O país era {}'.format(pais_sorte))
+            print('Parabéns, você perdeu! O país era {} :)'.format(pais_sorte))
             break
 
         guess = input("Adivinhe um país: ").lower()
@@ -69,6 +69,10 @@ while jogar == 's':
         
         if guess != 'inventario' and guess != 'humberto':
             sb.printa_status(tent_paises,dicas,t)
-        
+    
     jogar = input('Quer jogar novamente? [s/n]\n').lower()
+    if jogar == 's':
+        print('Um país foi sorteado, Boa sorte!')
+        print('Você tem 20 tentativas!')
+            
 print('falou!')

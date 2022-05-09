@@ -106,17 +106,19 @@ def menudicas(listapaises,pais_sorteado,dicasusadas,tentativas,letrascap,coresba
             tentativas -= 6
             break
 
-        # Letra da Capital
-        #===============================================================================================================================
-        # Comment: Verificar se tem alguma letra possível na capital pra ser dada ao player, senão devolver que não há mais letras
-        #===============================================================================================================================
         elif tip == '2':
             while True:
-                letra = sorteia_letra(pais_sorteado, [])
+                letra = sorteia_letra(pais_sorteado, letrascap)
                 if letra not in letrascap:
                     letrascap.append( letra )
                     break
-            dicasusadas["Letras da Capital: "] = letrascap
+            
+            dicasusadas["Letras da Capital: "] = ''
+            for letra in letrascap:
+                if dicasusadas["Letras da Capital: "] == '':
+                    dicasusadas["Letras da Capital: "] += letra
+                else:
+                    dicasusadas["Letras da Capital: "] += ', {}'.format(letra)
             tentativas -= 3
             break
 
