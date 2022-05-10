@@ -3819,154 +3819,122 @@ DADOS = {
 import time
 import random
 
+with open('humberto.txt','r') as humbertao:
+  linhas = humbertao.readlines()
+humbertao.close()
+humberto = []
+for linha in linhas:
+  humberto.append(linha)
+
+flag_vivo = True
 pais_h = 'humberto'
 
 paises = sb.normaliza(DADOS)
 
 pais_sorte = sb.sorteia_pais(paises)
 
-
-
-god_hp = 10  # HP do Humberto
-god_r = 2    # Nível de Raiva do Humberto
-
-pl_hp = 10   # HP do player
-
-# Pre-made options of answer (1 certa / 2 erradas)
 set_ra = ["1. Prefiro MODSIM", "2. Achei um erro no servidor", "3. "]  # Set A de respostas (Resp: 2)
 set_rb = ["1. Seu código está deselegante!", "2. ", "3. "]  # Set B de respostas (Resp: 1)
 set_rc = ["1. ", "2. ", "3. Hoje é Segunda, não é fim de semana"]  # Set C de respostas (Resp: 3)
 set_rd = ["1. Me atrasei por que eu tava dormindo, desculpa :(", "2. Tava com dúvida em tal questão de matemática...", "3. "]  # Set D de respostas (Resp: 1)
 set_re = ["1. ", "2. ", "3. Copiei seu código mas não rodou"]  # Set D de respostas (Resp: 1)
 
-sets_dialg = [set_ra, set_rb, set_rc, set_rd] # Sets por turno
+sets_dialg = [set_ra, set_rb, set_rc, set_rd, set_re]
 
-# Humberto Interactions for sets
 hset_ra = ["E eu prefiro ta em casa, vai fazer código vai", "Lá vem, LÁ VEM!! Certeza que é parêntesis!", ""]
-hset_rb = ["Vou te contar viu, ", "", ""]
+hset_rb = ["Vou te contar viu...", " ", " "]
 hset_rc = ["", "", "EU DISSE BOM FIM DE SEMANA!!!! BOM FIM DE SEMANA"]
 hset_rd = ["Pelo amor de deus, no último ano do meu mestrado eu dormi duas horas só... Desculpinha viu", "", ""]
 hset_re = ["", "", "Então você não copiou direito. Vou te falar viu..."]
-sets_dialgh = [hset_ra, hset_rb, hset_rc, hset_rd]
+sets_dialgh = [hset_ra, hset_rb, hset_rc, hset_rd, hset_re]
 
-#Respostas Certas
-resp_cert = [2,1,3,2,3]
-
-# Escolheu dica ao enfrentar Humberto
 dica_diag = [
   "Estágiario da Google não precisa de dica",
   "Você ta NERVOSO queridão",
-  "b"
+  "Pesquisa na internet vai!"
 ]
 
-# Rounds
-def round(cont, pl_hp, god_hp, god_r):
-  
-  #=======================================  HP E RAIVA NÃO ESTÃO MUDANDO  =============================================================
-  #                                                    ;-;
-  
-  # Interação com diálogo
-  continuar = True
-  while continuar:
-    choice = input("[1 | Confrontá-lo.]  -  [2 | Pedir dica ao Humberto.]\n")
+resp_cert = [2,1,3,1,3]
 
-    # Opção de diálogo
-    if choice == '1':
-      # Set de Diálogos
-      print()
-      for diag in sets_dialg[cont]:
-        print(diag)
-        time.sleep(0.5)
-      print()
-      resp = int(input('Diga algo ao Homem: \n'))
-      print()
-      break
+def round(entrada):
 
-    # Opção de Dica
-    elif choice == '2':
-      print(random.choice(dica_diag)+'\n')
-      time.sleep(1)
-      
-    # None
-    else:
-      print('Vou ter que repetir mesmo?\n')
-      time.sleep(1)
+    pl_hp,h_hp,h_anger = entrada[0], entrada[1], entrada[2]
+    flag = True
 
+    while flag:
 
-  # Respostas do Humberto
+        choice = input("[1 | Confrontá-lo.]  -  [2 | Pedir dica ao Humberto.]\nSua escolha: ")
+        print("")
 
+        if choice == '2':
+            print(dica_diag[random.randint(0,2)])
+            print("")
+        
+        elif choice == '1':
+            flag = False
+            numero = random.randint(0,4)
 
-  # Resp. Errada
-  if resp != resp_cert[cont]:   
-    print('{}\n'.format(sets_dialgh[cont][resp-1]))
-    time.sleep(2)
+            falas = sets_dialg[numero]
+            respostas = sets_dialgh[numero]
 
-    print('\n**Resposta errada ;-;**\n')
-    time.sleep(2)
-    print('Você recebeu 4 de dano, cuidado...\n')
-    pl_hp -= 4
+            for fala in falas:
+                print(fala)
 
-    time.sleep(2)
+            resp_player = int(input("\nDiga algo ao homem: "))
+            print("")
 
-  # Resp. Certa
-  elif resp == 2:
-    print('{}\n'.format(sets_dialgh[cont][1]))
-    time.sleep(3)
-    print('\n**ISSO! VOCÊ SABE MESMO IRRITAR O HUMBERTO :)**\n')
-    time.sleep(2)
-    print('Continue Assim!\n')
-    time.sleep(3)
-    
-    god_hp -= god_r
-    god_r += 2
+            time.sleep(0.5)
+            print(respostas[resp_player-1])
+            time.sleep(2)
 
-    
+            if resp_player == resp_cert[numero]:
+
+                print("\nHumberto ganhou 1 de raiva!")
+                time.sleep(1)
+                h_anger += 1
+                h_hp -= h_anger
+                print("\nVocê deu {0} de dano no Humberto!".format(h_anger))
+                time.sleep(1)
 
 
+                print("\nISSO, VOCE SABE IRRITRAR O HUMBERTO\n")
+                time.sleep(2)
 
+            else:
+                pl_hp -= h_anger
 
+                print("Essa não foi a resposta certa...")
+            
+            time.sleep(2)
 
-def h_act():
-  cont = 0
-  # Mensagens antes de aparecer o boss
-  phrases = ['\n*The ground starts shaking*\n', '*Your Soul Cries in fear*\n', '*It´s too late now*\n']
-  for i in phrases:
-      print(i)
-      time.sleep(2)
-  
-  while god_hp > 0:
+    return [pl_hp,h_hp,h_anger]
 
-    # with open('samba.txt', 'r') as arq:
-    #   linhas = arq.readlines()
-
-    # for linha in linhas:
-    #   print(linha)
-
-    # Encounter
-    print('Humberto PlaceHolder')
-    time.sleep(2)
-    print('\nFala do Humberto\n\n')
-    time.sleep(1)
-    print('HP de Humberto: {}'.format(god_hp))
-    print('Raiva de Doisberto: {}\n\n'.format(god_r))
-    time.sleep(2)
-
-    print('Seu HP: {}\n'.format(pl_hp))
-    time.sleep(2)
-
-    round(cont, pl_hp, god_hp, god_r) 
-       
-    
-    if god_hp <= 0:
-        print('\nChama o Professor Resina então...\n')
+def setup(player_hp,god_hp,god_rage):
+    estado = [player_hp,god_hp,god_rage]
+    phrases = ['\n*The ground starts shaking*\n', '*Your Soul Cries in fear*\n', '*It´s too late now*\n']
+    for i in phrases:
+        print(i)
         time.sleep(2)
-        print('UAU! Parabéns, você realmente ganhou! Aqui está o premio:')
-        time.sleep(1)
-        print('O país sorteado foi: {} :)\n'.format(pais_sorte))
-    elif pl_hp <= 0:
-        print('\nSe FUD**!\n')
-        t -= 1
-        break
+    
+    while True:
 
+        for a in humberto:
+            print(a,end='')
+            time.sleep(0.05)
+        
+        time.sleep(2)
+        print('\n\n"FALA DO HUMBERTO"\n')
+        time.sleep(2)
+        print('HP de Humberto: {}'.format(estado[1]))
+        print('Raiva de Humberto: {}\n'.format(estado[2]))
+        time.sleep(2)
 
+        print('Seu HP: {}\n'.format(estado[0]))
+        time.sleep(2)
 
+        estado = round(estado)
+
+        if estado[0] <= 0:
+            return 'derrota'
+        elif estado[1] <= 0:
+            return 'vitoria'

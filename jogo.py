@@ -1,5 +1,6 @@
+import time
 import scriptsbase as sb    
-from database import DADOS, EARTH_RADIUS, pais_h, h_act, pais_sorte, paises
+from database import DADOS, EARTH_RADIUS, pais_h, setup, pais_sorte, paises
 
 raio = EARTH_RADIUS
 jogar = 's'
@@ -44,7 +45,25 @@ while jogar == 's':
         
         # Interaction
         elif guess == pais_h:
-            h_act()
+            resultado = setup(10,10,0)
+            if resultado == 'vitoria':
+                print("Você derrotou o Deus do python... essa é sua recompensa:")
+                time.sleep(1)
+                print("O país sorteado era: {0}".format(pais_sorte))
+                time.sleep(1)
+                print("Fim secreto desbloqueado!")
+                time.sleep(1)
+                print("Obrigado por jogar!")
+                time.sleep(1)
+                break
+            else:
+                print("Você foi derrotado...")
+                time.sleep(1)
+                print("Não lhe resta mais nada...")
+                time.sleep(1)
+                print("Além do amargo gosto da derrota...")
+                time.sleep(1)
+                break
 
         # Inventario
         elif guess == 'inventario':
@@ -56,7 +75,7 @@ while jogar == 's':
 
         # Pais digitado not in paises    
         elif guess not in paises:
-            print("País desconhecido, tente outro...\n\n")
+            print("País desconhecido, tente outro...")
         
         # Pais in paises
         else:

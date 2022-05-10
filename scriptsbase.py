@@ -1,5 +1,7 @@
 import random
 import math
+import colorama
+from colorama import Fore
 
 def adiciona_em_ordem(pais, d, lista):
     n = 0
@@ -145,9 +147,19 @@ def printa_status(paises,dicasusadas,tentativas):
     if paises != []:
         print("\nDistâncias:")
         for i in paises:
-            print('     {} --> {:.2f} km'.format(i[0], i[1]))
+            if i[1] <= 1000:
+                print(Fore.CYAN + '     {} --> {:.2f} km'.format(i[0], i[1]),end='')
+            elif i[1] <= 2500:
+                print(Fore.YELLOW + '     {} --> {:.2f} km'.format(i[0], i[1]),end='')
+            elif i[1] <= 5000:
+                print(Fore.RED + '     {} --> {:.2f} km'.format(i[0], i[1]),end='')
+            elif i[1] <= 10000:
+                print(Fore.LIGHTMAGENTA_EX + '     {} --> {:.2f} km'.format(i[0], i[1]),end='')
+            else:
+                print(Fore.LIGHTBLACK_EX + '     {} --> {:.2f} km'.format(i[0], i[1]),end='')
+            print(Fore.RESET + '')
     if dicasusadas != {}:
         print("\nDicas:")
         for i in dicasusadas:
             print('     - {}{}'.format(i, dicasusadas[i]))
-    print('\nVocê tem : {} tentativas sobrando!\n'.format(tentativas))
+    print('\nVocê tem: {} tentativas sobrando!\n'.format(tentativas))
