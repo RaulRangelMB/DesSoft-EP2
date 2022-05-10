@@ -3838,11 +3838,10 @@ set_rb = ["1. Seu código está deselegante!", "2. ", "3. "]  # Set B de respost
 set_rc = ["1. ", "2. ", "3. Hoje é Segunda, não é fim de semana"]  # Set C de respostas (Resp: 3)
 set_rd = ["1. Me atrasei por que eu tava dormindo, desculpa :(", "2. Tava com dúvida em tal questão de matemática...", "3. "]  # Set D de respostas (Resp: 1)
 set_re = ["1. ", "2. ", "3. Copiei seu código mas não rodou"]  # Set D de respostas (Resp: 1)
-
 sets_dialg = [set_ra, set_rb, set_rc, set_rd, set_re]
 
 hset_ra = ["E eu prefiro ta em casa, vai fazer código vai", "Lá vem, LÁ VEM!! Certeza que é parêntesis!", ""]
-hset_rb = ["Vou te contar viu...", " ", " "]
+hset_rb = ["Deselegante é a sua...\nVou te contar viu!", " ", " "]
 hset_rc = ["", "", "EU DISSE BOM FIM DE SEMANA!!!! BOM FIM DE SEMANA"]
 hset_rd = ["Pelo amor de deus, no último ano do meu mestrado eu dormi duas horas só... Desculpinha viu", "", ""]
 hset_re = ["", "", "Então você não copiou direito. Vou te falar viu..."]
@@ -3858,27 +3857,27 @@ resp_cert = [2,1,3,1,3]
 
 def round(entrada):
 
-    pl_hp,h_hp,h_anger = entrada[0], entrada[1], entrada[2]
+    pl_hp,h_hp,h_anger,numero = entrada[0], entrada[1], entrada[2], entrada[3]
     flag = True
 
     while flag:
 
         choice = input("[1 | Confrontá-lo.]  -  [2 | Pedir dica ao Humberto.]\nSua escolha: ")
         print("")
+        time.sleep(0.5)
 
         if choice == '2':
-            print(dica_diag[random.randint(0,2)])
-            print("")
-        
+            print(dica_diag[random.randint(0,len(dica_diag)-1)]+'\n')
+
         elif choice == '1':
             flag = False
-            numero = random.randint(0,4)
 
             falas = sets_dialg[numero]
             respostas = sets_dialgh[numero]
 
             for fala in falas:
                 print(fala)
+                time.sleep(0.2)
 
             resp_player = int(input("\nDiga algo ao homem: "))
             print("")
@@ -3888,49 +3887,49 @@ def round(entrada):
             time.sleep(2)
 
             if resp_player == resp_cert[numero]:
+              h_anger += 1
+              h_hp -= h_anger
+              print("\n--> ISSO, VOCE SABE MESMO IRRITRAR O HUMBERTO! <--\n")
+              time.sleep(1)
 
-                print("\nHumberto ganhou 1 de raiva!")
-                time.sleep(1)
-                h_anger += 1
-                h_hp -= h_anger
+              if h_hp > 0: 
+                print('Continue assim! :)')
+                time.sleep(2)
+
                 print("\nVocê deu {0} de dano no Humberto!".format(h_anger))
                 time.sleep(1)
-
-
-                print("\nISSO, VOCE SABE IRRITRAR O HUMBERTO\n")
-                time.sleep(2)
+                print("\nHumberto ganhou 1 de raiva!")
 
             else:
                 pl_hp -= h_anger
-
-                print("Essa não foi a resposta certa...")
-            
+                print("Resposta Errada! Humberto está caçoando de você!\n")
+            numero += 1
             time.sleep(2)
 
-    return [pl_hp,h_hp,h_anger]
+    return [pl_hp,h_hp,h_anger,numero]
 
-def setup(player_hp,god_hp,god_rage):
-    estado = [player_hp,god_hp,god_rage]
+def setup(player_hp,god_hp,god_rage,numero):
+    estado = [player_hp,god_hp,god_rage,numero]
     phrases = ['\n*The ground starts shaking*\n', '*Your Soul Cries in fear*\n', '*It´s too late now*\n']
     for i in phrases:
         print(i)
         time.sleep(2)
-    
+
     while True:
 
         for a in humberto:
             print(a,end='')
             time.sleep(0.05)
         
-        time.sleep(2)
+        time.sleep(1)
         print('\n\n"FALA DO HUMBERTO"\n')
-        time.sleep(2)
+        time.sleep(1)
         print('HP de Humberto: {}'.format(estado[1]))
-        print('Raiva de Humberto: {}\n'.format(estado[2]))
-        time.sleep(2)
+        print('Raiva de Doisberto: {}\n'.format(estado[2]))
+        time.sleep(1)
 
         print('Seu HP: {}\n'.format(estado[0]))
-        time.sleep(2)
+        time.sleep(1)
 
         estado = round(estado)
 

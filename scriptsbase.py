@@ -56,31 +56,32 @@ def haversine(r, p1,l1,p2,l2):
 
 def menudicas(listapaises,pais_sorteado,dicasusadas,tentativas,letrascap,coresbandeira):
     disp = ['0']
-    print('Mercado de Dicas:  Recomendação: Dica 6 (Recomeçar caso nescessário)')
+    print('\n=$==$==$==$==$==$==$==$==$==$==$==$==$==$'+Fore.LIGHTYELLOW_EX+'  Mercado de Dicas:  '+Fore.RESET+'$==$==$==$==$==$==$==$==$==$==$==$==$==$=')
+    print(Fore.LIGHTGREEN_EX+'Recomendação do dia: Dica 6 (Recomeçar caso nescessário)\n'+Fore.RESET)
     if tentativas > 4:
-        print('1. Cor da Bandeira    - custa 4 tentativas')
+        print('1. Cor da Bandeira    - custa'+Fore.LIGHTYELLOW_EX+' 4 '+Fore.RESET+'tentativas')
         disp.append('1')
     if tentativas > 3:
-        print('2. Letra da Capital   - custa 3 tentativas')
+        print('2. Letra da Capital   - custa'+Fore.LIGHTYELLOW_EX+' 3 '+Fore.RESET+'tentativas')
         disp.append('2')
     if tentativas > 6 and "Área: " not in dicasusadas:
-        print('3. Área               - custa 6 tentativas')
+        print('3. Área               - custa '+Fore.LIGHTYELLOW_EX+'6 '+Fore.RESET+'tentativas')
         disp.append('3')
     if tentativas > 5 and 'População: ' not in dicasusadas:
-        print('4. População          - custa 5 tentativas')
+        print('4. População          - custa'+Fore.LIGHTYELLOW_EX+' 5 '+Fore.RESET+'tentativas')
         disp.append('4')
     if tentativas > 7 and 'Continente: ' not in dicasusadas:
-        print('5. Continente         - custa 7 tentativas')
+        print('5. Continente         - custa '+Fore.LIGHTYELLOW_EX+'7 '+Fore.RESET+'tentativas')
         disp.append('5')
     if tentativas == 20 and 'The end is near (Digite: Humberto)' not in dicasusadas:
-        print('6. Você está pronto?  - custa 19 tentativas')
+        print('6. '+Fore.LIGHTCYAN_EX+'Você está pronto?  - custa '+Fore.LIGHTYELLOW_EX+'19 '+Fore.LIGHTCYAN_EX+'tentativas'+Fore.RESET)
         disp.append('6')
 
     print('0. Cancelar\n')
     disponivel = '|'.join(disp)
 
     while True:
-        tip = input('Escolha sua opção [{}]: '.format(disponivel))
+        tip = input('Escolha sua opção'+Fore.LIGHTYELLOW_EX+' [{}]: '.format(disponivel)+Fore.RESET)
         if tip not in disp:
             print('Opção Inválida!\n')
 
@@ -135,13 +136,22 @@ def menudicas(listapaises,pais_sorteado,dicasusadas,tentativas,letrascap,coresba
     # print('Tentativas Restantes: {}'.format(tentativas))
     return tentativas
 
+def cor_tentativa(tentativas):
+    if tentativas > 11:
+        return Fore.LIGHTCYAN_EX + '{}'.format(tentativas) + Fore.RESET
+    elif tentativas > 6:
+        return Fore.LIGHTYELLOW_EX + '{}'.format(tentativas) + Fore.RESET
+    return Fore.LIGHTRED_EX + '{}'.format(tentativas) + Fore.RESET
+
 def checainventario(paises,dicasusadas):
-    print('\nDistâncias: ')
-    for i in paises:
-        print('     {} --> {:.2f} km'.format(i, paises[i]))
-    print('Dicas: ')
-    for i in dicasusadas:
-        print('     - {}{}'.format(i, dicasusadas[i]))
+        print('\n=D==E==S==S==O==F==/==D==E==S==S==O==F==|'+Fore.LIGHTGREEN_EX+'  Inventário:  '+Fore.RESET+'|==D==E==S==S==O==F==/==D==E==S==S==O==F==')
+        print('\nDistâncias: ')
+        for i in paises:
+            print('     {} --> {:.2f} km'.format(i[0], i[1]))
+        print('Dicas: ')
+        for i in dicasusadas:
+            print('     - {}{}'.format(i, dicasusadas[i]))
+        print()
     
 def printa_status(paises,dicasusadas,tentativas):
     if paises != []:
@@ -162,4 +172,4 @@ def printa_status(paises,dicasusadas,tentativas):
         print("\nDicas:")
         for i in dicasusadas:
             print('     - {}{}'.format(i, dicasusadas[i]))
-    print('\nVocê tem: {} tentativas sobrando!\n'.format(tentativas))
+    print('\nVocê tem: {} tentativas sobrando!\n'.format(cor_tentativa(tentativas)))
