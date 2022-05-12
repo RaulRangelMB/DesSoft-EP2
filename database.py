@@ -1,3 +1,4 @@
+from colorama import Fore
 import scriptsbase as sb
 EARTH_RADIUS = 6371
 
@@ -3833,6 +3834,13 @@ paises = sb.normaliza(DADOS)
 
 pais_sorte = sb.sorteia_pais(paises)
 
+# Falas do Humberto a cada round
+falas_hround = ["Quem ousa entrar em meu Domínio Inato de Programação!??",
+"Quem diria que esse mísero BUG sabe falar..."+ Fore.LIGHTRED_EX+ "Não por muito tempo!"+Fore.RESET,
+"Você ousa desafiar uma "+Fore.LIGHTRED_EX+"DIVINDADE"+Fore.RESET+"!? Patético!",
+"",
+""]
+
 set_ra = ["1. Prefiro MODSIM", "2. Achei um erro no servidor", "3. "]  # Set A de respostas (Resp: 2)
 set_rb = ["1. Seu código está deselegante!", "2. ", "3. "]  # Set B de respostas (Resp: 1)
 set_rc = ["1. ", "2. ", "3. Hoje é Segunda, não é fim de semana"]  # Set C de respostas (Resp: 3)
@@ -3935,8 +3943,9 @@ def setup(player_hp,god_hp,god_rage,numero):
             print(a,end='')
             time.sleep(0.05)
         
+        
         time.sleep(1)
-        print('\n\n"FALA DO HUMBERTO"\n')
+        print('\n\n'+falas_hround[numero]+'\n')
         time.sleep(1)
         print('HP de Humberto: {}'.format(estado[1]))
         print('Raiva de Doisberto: {}\n'.format(estado[2]))

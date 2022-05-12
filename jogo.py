@@ -9,9 +9,9 @@ print()
 print('=D==E==S==S==O==F==/==D==E==S==S==O==F==|  '+Fore.LIGHTGREEN_EX+'Bem-Vindo ao EP2 - Jogo dos Países  '+Fore.RESET+'|==D==E==S==S==O==F==/==D==E==S==S==O==F==')
 print()
 print(Fore.LIGHTMAGENTA_EX+'Feito para nosso querido professor, qual era o nome dele mesmo?...\n'+Fore.RESET+'\nComandos:')
-print('     dicas       - Acesso ao mercado de dicas ($)')
-print('     desisto     - Desistir da rodada (⌣̩̩́  _⌣̩̩̀ )')
-print('     inventario  - Mostra suas tentativas e dicas compradas\n')
+print('     '+Fore.LIGHTYELLOW_EX+'dicas'+ Fore.RESET +'       - Acesso ao mercado de dicas ($)')
+print('     '+ Fore.LIGHTRED_EX +'desisto'+ Fore.RESET +'     - Desistir da rodada (⌣̩̩́  _⌣̩̩̀ )')
+print('     '+ Fore.LIGHTGREEN_EX +'inventario'+ Fore.RESET +'  - Mostra suas tentativas e dicas compradas\n')
 print('Você tem'+Fore.LIGHTCYAN_EX+' 20 '+ Fore.RESET +'tentativas!\n\n')
 
 while jogar == 's':
@@ -35,7 +35,9 @@ while jogar == 's':
 
         # Vitória
         if guess == pais_sorte:
-            print(Fore.LIGHTCYAN_EX+'\nVocê venceu!!!\n'+Fore.LIGHTGREEN_EX+'\nDica: '+Fore.RESET+'quando for adivinhar um país, digite humberto\n')
+            print(Fore.LIGHTCYAN_EX+'\nVocê venceu!!!\n')
+            time.sleep(1)
+            print(Fore.LIGHTGREEN_EX+'\nDica: '+Fore.RESET+'quando for adivinhar um país, digite humberto\n')
             break
 
         # Desistência
@@ -58,13 +60,13 @@ while jogar == 's':
                 time.sleep(1)
                 
             else:
-                print("Você foi DEBUGADO!\n")
+                print("Você foi "+Fore.LIGHTRED_EX+"DEBUGADO!\n"+ Fore.RESET)
                 time.sleep(1)
-                print("Não lhe resta mais nada, além do amargo gosto da derrota...\n")
+                print("Não lhe resta mais nada, além do amargo gosto da "+ Fore.LIGHTRED_EX+"derrota...\n"+ Fore.RESET)
                 time.sleep(2)
                 print("Desistir seria a opção mais sensata...\n")
                 time.sleep(1)
-                print("Mas você não ira desistir, irá?\n")
+                print(Fore.LIGHTYELLOW_EX + "Mas você não ira desistir, irá?\n"+ Fore.RESET)
                 break
 
         # Inventario
