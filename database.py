@@ -3847,13 +3847,18 @@ hset_rd = ["Pelo amor de deus, no último ano do meu mestrado eu dormi duas hora
 hset_re = ["", "", "Então você não copiou direito. Vou te falar viu..."]
 sets_dialgh = [hset_ra, hset_rb, hset_rc, hset_rd, hset_re]
 
+# No round escrever algo q não seja 1, 2 ou 3
+set_resp_inv = ['Você tinha um trabalho cara, como vc erra isso?',
+'Meu Deus do céu...',
+'Pequeno lembrete: TENTE UMA OPÇÃO QUE FAÇA SENTIDO!']
+
 dica_diag = [
   "Estágiario da Google não precisa de dica",
   "Você ta NERVOSO queridão",
   "Pesquisa na internet vai!"
 ]
 
-resp_cert = [2,1,3,1,3]
+resp_cert = ["2","1","3","1","3"]
 
 def round(entrada):
 
@@ -3879,15 +3884,24 @@ def round(entrada):
                 print(fala)
                 time.sleep(0.2)
 
-            resp_player = int(input("\nDiga algo ao homem: "))
-            print("")
+            while True:
+              resp_player = input("\nDiga algo ao homem: ")
+              print("")
+              if resp_player in ["1","2","3"]:
+                break
+              else:
+                time.sleep(0.5)
+                print(random.choice(set_resp_inv))
+                time.sleep(1.5)
+                print('\nOpção Inválida! Eu Gaguejei?\n')
+                time.sleep(1)
 
             time.sleep(0.5)
-            print(respostas[resp_player-1])
+            print(respostas[int(resp_player)-1])
             time.sleep(2)
 
             if resp_player == resp_cert[numero]:
-              h_anger += 1
+              h_anger += 2
               h_hp -= h_anger
               print("\n--> ISSO, VOCE SABE MESMO IRRITRAR O HUMBERTO! <--\n")
               time.sleep(1)

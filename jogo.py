@@ -29,7 +29,7 @@ while jogar == 's':
     while t >= 0:
         # Derrota
         if t == 0:
-            print('Parabéns, você perdeu! O país era '+Fore.LIGHTCYAN_EX+'{}'+ Fore.RESET +':)'.format(pais_sorte))
+            print('Parabéns, você perdeu! O país era '+Fore.LIGHTCYAN_EX+'{}'.format(pais_sorte)+ Fore.RESET +':)')
             break
         guess = input("Adivinhe um país: ").lower()
 
@@ -48,7 +48,7 @@ while jogar == 's':
         
         # Interaction
         elif guess == pais_h:
-            resultado = setup(10,10,0,0)
+            resultado = setup(10,10,2,0)
             if resultado == 'vitoria':
                 print("\nVocê derrotou o "+ Fore.LIGHTRED_EX +"Deus do python"+ Fore.RESET +"... essa é sua recompensa:\n")
                 time.sleep(1)
@@ -93,6 +93,6 @@ while jogar == 's':
     
     jogar = input('Quer jogar novamente?'+ Fore.LIGHTGREEN_EX+'[s/n]\n'+Fore.RESET).lower()
     if jogar == 's':
-        print('Um país foi sorteado, Boa sorte!')
+        print('Um país foi sorteado, Boa sorte!\n')
             
 print('falou!')
