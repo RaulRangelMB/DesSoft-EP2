@@ -3832,8 +3832,6 @@ pais_h = 'humberto'
 
 paises = sb.normaliza(DADOS)
 
-pais_sorte = sb.sorteia_pais(paises)
-
 # Falas do Humberto a cada round
 falas_hround = ["Quem ousa entrar em meu Domínio Inato de Programação!??",
 "Quem diria que esse mísero BUG sabe falar..."+ Fore.LIGHTRED_EX+ "Não por muito tempo!"+Fore.RESET,
@@ -3842,14 +3840,14 @@ falas_hround = ["Quem ousa entrar em meu Domínio Inato de Programação!??",
 ""]
 
 set_ra = ["1. Prefiro MODSIM", "2. Achei um erro no servidor", "3. "]  # Set A de respostas (Resp: 2)
-set_rb = ["1. Seu código está deselegante!", "2. ", "3. "]  # Set B de respostas (Resp: 1)
+set_rb = ["1. Seu código está deselegante!", "2. Humberto, o Proctorio não tá funcionando", "3. "]  # Set B de respostas (Resp: 1)
 set_rc = ["1. ", "2. ", "3. Hoje é Segunda, não é fim de semana"]  # Set C de respostas (Resp: 3)
 set_rd = ["1. Me atrasei por que eu tava dormindo, desculpa :(", "2. Tava com dúvida em tal questão de matemática...", "3. "]  # Set D de respostas (Resp: 1)
 set_re = ["1. ", "2. ", "3. Copiei seu código mas não rodou"]  # Set D de respostas (Resp: 1)
 sets_dialg = [set_ra, set_rb, set_rc, set_rd, set_re]
 
 hset_ra = ["E eu prefiro ta em casa, vai fazer código vai", "Lá vem, LÁ VEM!! Certeza que é parêntesis!", ""]
-hset_rb = ["Deselegante é a sua...\nVou te contar viu!", " ", " "]
+hset_rb = ["Deselegante é a sua...\nVou te contar viu!", "Ai que pena, bom fim de semana pro senhor! ", " "]
 hset_rc = ["", "", "EU DISSE BOM FIM DE SEMANA!!!! BOM FIM DE SEMANA"]
 hset_rd = ["Pelo amor de deus, no último ano do meu mestrado eu dormi duas horas só... Desculpinha viu", "", ""]
 hset_re = ["", "", "Então você não copiou direito. Vou te falar viu..."]
@@ -3877,7 +3875,7 @@ def round(entrada):
 
         choice = input("[1 | Confrontá-lo.]  -  [2 | Pedir dica ao Humberto.]\nSua escolha: ")
         print("")
-        time.sleep(0.5)
+        time.sleep(0.2)
 
         if choice == '2':
             print(dica_diag[random.randint(0,len(dica_diag)-1)]+'\n')
@@ -3909,7 +3907,7 @@ def round(entrada):
             time.sleep(2)
 
             if resp_player == resp_cert[numero]:
-              h_anger += 2
+              h_anger += 1
               h_hp -= h_anger
               print("\n--> ISSO, VOCE SABE MESMO IRRITRAR O HUMBERTO! <--\n")
               time.sleep(1)
@@ -3925,6 +3923,8 @@ def round(entrada):
             else:
                 pl_hp -= h_anger
                 print("Resposta Errada! Humberto está caçoando de você!\n")
+                time.sleep(1)
+                print("Você tomou {0} de dano!\n".format(h_anger))
             numero += 1
             time.sleep(2)
 
