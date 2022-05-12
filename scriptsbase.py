@@ -1,6 +1,5 @@
 import random
 import math
-import colorama
 from colorama import Fore
 
 def adiciona_em_ordem(pais, d, lista):
@@ -46,6 +45,12 @@ def sorteia_letra(p, rest):
         return ra
     else:
         return random.choice(ra)
+
+def cor_da_bandeira(cores,cores_atuais):
+    while True:
+        cor = random.choice(list(cores.keys()))
+        if cores[cor] != 0 and cor != "outras" and cor not in cores_atuais:
+            return cor
 
 def haversine(r, p1,l1,p2,l2):
     aux1 = (math.sin( math.radians((p2-p1)/2 )))**2
@@ -127,6 +132,18 @@ def menudicas(listapaises,pais_sorteado,dicasusadas,tentativas,letrascap,coresba
 
         # Cor da Bandeira
         elif tip == '1':
+            while True:
+                cor = cor_da_bandeira(listapaises[pais_sorteado]["bandeira"], coresbandeira)
+                if cor not in coresbandeira:
+                    coresbandeira.append(cor)
+                    break
+                
+            dicasusadas["Cores da Bandeira: "] = ''
+            for cor in coresbandeira:
+                if dicasusadas["Cores da Bandeira: "] == '':
+                    dicasusadas["Cores da Bandeira: "] += cor
+                else:
+                    dicasusadas["Cores da Bandeira: "] += ', {}'.format(cor)
             tentativas -= 4
             break
 

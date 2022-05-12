@@ -3916,9 +3916,9 @@ def round(entrada):
                 print('Continue assim! :)')
                 time.sleep(2)
 
-                print("\nVocê deu {0} de dano no Humberto!".format(h_anger))
-                time.sleep(1)
                 print("\nHumberto ganhou 1 de raiva!")
+                time.sleep(1)
+                print("\nVocê deu {0} de dano no Humberto!".format(h_anger))
 
             else:
                 pl_hp -= h_anger
@@ -3943,9 +3943,8 @@ def setup(player_hp,god_hp,god_rage,numero):
             print(a,end='')
             time.sleep(0.05)
         
-        
         time.sleep(1)
-        print('\n\n'+falas_hround[numero]+'\n')
+        print('\n\n'+falas_hround[estado[-1]]+'\n')
         time.sleep(1)
         print('HP de Humberto: {}'.format(estado[1]))
         print('Raiva de Doisberto: {}\n'.format(estado[2]))

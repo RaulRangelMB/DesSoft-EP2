@@ -91,7 +91,8 @@ while jogar == 's':
             if [guess, d] not in tent_paises:
                 tent_paises = sb.adiciona_em_ordem(guess, d, tent_paises)
             else:
-                print('\n\nJá tentou esse país, perdeu ponto por ser '+Fore.LIGHTRED_EX+'boboca!\n'+Fore.RESET)
+                print('\nJá tentou esse país!!')
+                t+=1
         
         if guess != 'inventario' and guess != pais_h:
             sb.printa_status(tent_paises,dicas,t)
