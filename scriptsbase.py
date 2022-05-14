@@ -59,6 +59,16 @@ def haversine(r, p1,l1,p2,l2):
     d = 2*r*math.asin( (aux1 + aux2*aux3)**(1/2) )
     return d
 
+def cores(string, cor):
+    cores = ["green", "red", "blue", "yellow", 'cyan', 'magenta', "black", "white", "lgreen", "lred", "lblue", "lyellow", "lcyan", "lmagenta", "lblack", "lwhite"]
+    if cor == 'options' or cor == '':
+        return cores
+    cor_return = [Fore.GREEN, Fore.RED, Fore.BLUE, Fore.YELLOW, Fore.CYAN, Fore.MAGENTA, Fore.BLACK, Fore.WHITE, Fore.LIGHTGREEN_EX, Fore.LIGHTRED_EX, Fore.LIGHTBLUE_EX, Fore.LIGHTYELLOW_EX, Fore.LIGHTCYAN_EX, Fore.LIGHTMAGENTA_EX, Fore.LIGHTBLACK_EX, Fore.LIGHTWHITE_EX]
+    for i in range(0,len(cores)):
+        if cores[i] == cor:
+            return cor_return[i] + string + Fore.RESET
+    return "Cor indisponível"
+
 def menudicas(listapaises,pais_sorteado,dicasusadas,tentativas,letrascap,coresbandeira):
     disp = ['0']
     print('\n=$==$==$==$==$==$==$==$==$==$==$==$==$==$'+Fore.LIGHTYELLOW_EX+'  Mercado de Dicas:  '+Fore.RESET+'$==$==$==$==$==$==$==$==$==$==$==$==$==$=')

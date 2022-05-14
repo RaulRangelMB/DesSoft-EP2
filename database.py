@@ -3833,35 +3833,35 @@ pais_h = 'humberto'
 paises = sb.normaliza(DADOS)
 
 # Falas do Humberto a cada round
-falas_hround = ["Quem ousa entrar em meu Domínio Inato de Programação!??",
-"Quem diria que esse mísero BUG sabe falar..."+ Fore.LIGHTRED_EX+ "Não por muito tempo!"+Fore.RESET,
-"Você ousa desafiar uma "+Fore.LIGHTRED_EX+"DIVINDADE"+Fore.RESET+"!? Patético!",
+falas_hround = [sb.cores("Quem ousa","lred")+" entrar em meu "+sb.cores("Domínio Inato","lmagenta")+" de Programação!??",
+"Quem diria que esse mísero BUG sabe falar..."+ sb.cores("Não por muito tempo!","lred"),
+"Você ousa desafiar uma "+sb.cores("DIVINDADE","lred")+"!? Patético!",
 "",
 ""]
 
-set_ra = ["1. Prefiro MODSIM", "2. Achei um erro no servidor", "3. "]  # Set A de respostas (Resp: 2)
+set_ra = ["1. Prefiro MODSIM", "2. Achei um erro no servidor", "3. Posso ir no banheiro professor?"]  # Set A de respostas (Resp: 2)
 set_rb = ["1. Seu código está deselegante!", "2. Humberto, o Proctorio não tá funcionando", "3. "]  # Set B de respostas (Resp: 1)
 set_rc = ["1. ", "2. ", "3. Hoje é Segunda, não é fim de semana"]  # Set C de respostas (Resp: 3)
 set_rd = ["1. Me atrasei por que eu tava dormindo, desculpa :(", "2. Tava com dúvida em tal questão de matemática...", "3. "]  # Set D de respostas (Resp: 1)
 set_re = ["1. ", "2. ", "3. Copiei seu código mas não rodou"]  # Set D de respostas (Resp: 1)
 sets_dialg = [set_ra, set_rb, set_rc, set_rd, set_re]
 
-hset_ra = ["E eu prefiro ta em casa, vai fazer código vai", "Lá vem, LÁ VEM!! Certeza que é parêntesis!", ""]
-hset_rb = ["Deselegante é a sua...\nVou te contar viu!", "Ai que pena, bom fim de semana pro senhor! ", " "]
-hset_rc = ["", "", "EU DISSE BOM FIM DE SEMANA!!!! BOM FIM DE SEMANA"]
-hset_rd = ["Pelo amor de deus, no último ano do meu mestrado eu dormi duas horas só... Desculpinha viu", "", ""]
+hset_ra = ["E eu prefiro ta em casa, vai fazer código vai", "Lá vem, "+sb.cores("LÁ VEM!!!","lred")+" SE FOR SÓ UM PARÊNTESIS...", "Eu tenho cara de babá? Faz o que você quiser bonitão!"]
+hset_rb = ["Deselegante é a sua...\nVou te contar viu!!", "Ai que pena,"+sb.cores(" bom fim de semana ","lblue")+"pro senhor! ", " "]
+hset_rc = ["", "", sb.cores("EU DISSE BOM FIM DE SEMANA!!!! ", "lred")+"BOM  F-I-M  D-E  S-E-M-A-N-A"]
+hset_rd = [sb.cores("Pelo amor de deus","lred")+", no último ano do meu mestrado eu dormi "+sb.cores("só duas horas",'lgreen')+"... Desculpinha viu", "", ""]
 hset_re = ["", "", "Então você não copiou direito. Vou te falar viu..."]
 sets_dialgh = [hset_ra, hset_rb, hset_rc, hset_rd, hset_re]
 
 # No round escrever algo q não seja 1, 2 ou 3
 set_resp_inv = ['Você tinha um trabalho cara, como vc erra isso?',
 'Meu Deus do céu...',
-'Pequeno lembrete: TENTE UMA OPÇÃO QUE FAÇA SENTIDO!']
+'Pequeno lembrete: '+sb.cores('TENTE UMA OPÇÃO QUE FAÇA SENTIDO!','lred')]
 
 dica_diag = [
-  "Estágiario da Google não precisa de dica",
-  "Você ta NERVOSO queridão",
-  "Pesquisa na internet vai!"
+  sb.cores("Estágiario da Google não precisa de dica",'lgreen'),
+  sb.cores("Você ta NERVOSO queridão","lmagenta"),
+  sb.cores("Pesquisa na internet vai!", "lcyan")
 ]
 
 resp_cert = ["2","1","3","1","3"]
@@ -3873,7 +3873,7 @@ def round(entrada):
 
     while flag:
 
-        choice = input("[1 | Confrontá-lo.]  -  [2 | Pedir dica ao Humberto.]\nSua escolha: ")
+        choice = input(sb.cores("[1 | Confrontá-lo.]","lred")+"  -  "+sb.cores("[2 | Pedir dica ao Humberto.]","lyellow")+"\nSua escolha: ")
         print("")
         time.sleep(0.2)
 
@@ -3899,7 +3899,7 @@ def round(entrada):
                 time.sleep(0.5)
                 print(random.choice(set_resp_inv))
                 time.sleep(1.5)
-                print('\nOpção Inválida! Eu Gaguejei?\n')
+                print(sb.cores('\n**Opção Inválida!**',"lred")+' Eu Gaguejei?\n')
                 time.sleep(1)
 
             time.sleep(0.5)
@@ -3909,22 +3909,22 @@ def round(entrada):
             if resp_player == resp_cert[numero]:
               h_anger += 1
               h_hp -= h_anger
-              print("\n--> ISSO, VOCE SABE MESMO IRRITRAR O HUMBERTO! <--\n")
+              print(sb.cores("\n--> ISSO, VOCE SABE MESMO IRRITRAR O HUMBERTO! <--\n",'lyellow'))
               time.sleep(1)
 
               if h_hp > 0: 
-                print('Continue assim! :)')
+                print(sb.cores('Continue assim! :)',"lyellow"))
                 time.sleep(2)
 
-                print("\nHumberto ganhou 1 de raiva!")
+                print("\nHumberto "+sb.cores("ganhou 1 de raiva","lred")+"!")
                 time.sleep(1)
-                print("\nVocê deu {0} de dano no Humberto!".format(h_anger))
+                print("\nVocê "+sb.cores("deu {0} de dano".format(h_anger),"lcyan")+" no Humberto!")
 
             else:
                 pl_hp -= h_anger
-                print("Resposta Errada! Humberto está caçoando de você!\n")
+                print(sb.cores("\nResposta Errada!","lred")+" Humberto está "+sb.cores("caçoando",'lred')+" de você!\n")
                 time.sleep(1)
-                print("Você tomou {0} de dano!\n".format(h_anger))
+                print("Você "+sb.cores("tomou {0} de dano","lred")+"!\n".format(h_anger))
             numero += 1
             time.sleep(2)
 
@@ -3932,7 +3932,7 @@ def round(entrada):
 
 def setup(player_hp,god_hp,god_rage,numero):
     estado = [player_hp,god_hp,god_rage,numero]
-    phrases = ['\n*The ground starts shaking*\n', '*Your Soul Cries in fear*\n', '*It´s too late now*\n']
+    phrases = ['\n\n*The ground starts shaking*\n\n', '*Your Soul Cries in fear*\n\n', '*It´s too late now*\n\n']
     for i in phrases:
         print(i)
         time.sleep(2)
@@ -3944,13 +3944,13 @@ def setup(player_hp,god_hp,god_rage,numero):
             time.sleep(0.05)
         
         time.sleep(1)
-        print('\n\n'+falas_hround[estado[-1]]+'\n')
-        time.sleep(1)
-        print('HP de Humberto: {}'.format(estado[1]))
-        print('Raiva de Doisberto: {}\n'.format(estado[2]))
+        print('\n\n'+falas_hround[estado[-1]]+'\n\n')
+        time.sleep(3)
+        print(sb.cores('HP','lred')+' de Humberto: {}'.format(estado[1]))
+        print(sb.cores('Raiva','lred')+' de Doisberto:{}\n'.format(estado[2]))
         time.sleep(1)
 
-        print('Seu HP: {}\n'.format(estado[0]))
+        print('Seu '+ sb.cores('HP: ','lcyan')+'{}\n\n'.format(estado[0]))
         time.sleep(1)
 
         estado = round(estado)
