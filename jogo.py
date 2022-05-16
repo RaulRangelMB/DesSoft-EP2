@@ -14,7 +14,10 @@ print('     '+ sb.cores('desisto','lred')+'     - Desistir da rodada (⌣̩̩́ 
 print('     '+ sb.cores('inventario',"lgreen")+'  - Mostra suas tentativas e dicas compradas\n')
 print('Você tem'+ sb.cores(' 20 ',"lcyan")+'tentativas!')
 
+# Loop para quando o jogador ainda quer jogar
 while jogar == 's':
+
+    # Reiniciando as tentativas e sorteando um novo país
     t = 20
     pais_sorte = sb.sorteia_pais(paises)
 
@@ -29,6 +32,7 @@ while jogar == 's':
     l_cap_tent = []          # Letra da Capital
     c_band_tent = []         # Cores da Bandeira
 
+    # Loop para quando o jogador ainda tem tentativas
     while t >= 0:
         # Derrota
         if t == 0:
@@ -83,11 +87,11 @@ while jogar == 's':
         elif guess == 'dicas' or guess == 'dica':
             t = sb.menudicas(paises,pais_sorte,dicas,t,l_cap_tent,c_band_tent)
 
-        # Pais digitado not in paises    
+        # Se o ais digitado nao estiver na lista de paises    
         elif guess not in paises:
             print("País desconhecido, tente outro...")
         
-        # Pais in paises
+        # Se o ais digitado estiver na lista de paises 
         else:
             t -= 1
             d = sb.haversine(raio, paises[guess]['geo']['latitude'], paises[guess]['geo']['longitude'], paises[pais_sorte]['geo']['latitude'], paises[pais_sorte]['geo']['longitude'])
@@ -100,6 +104,7 @@ while jogar == 's':
         if guess != 'inventario' and guess != pais_h:
             sb.printa_status(tent_paises,dicas,t)
     
+    # Perguntar se o jogador quer continuar a jogar
     while True:
         jogar = input('Quer jogar novamente?'+ sb.cores(' [s/n]: \n',"lgreen")).lower()
         if jogar == 's' or jogar == 'n':
@@ -109,4 +114,4 @@ while jogar == 's':
             time.sleep(1)
             print("\nIsso é um "+sb.cores("sim?","lgreen") + " Isso é um "+sb.cores("não?","lred")+" Não to entendendo...\n")
             
-print('falou!')
+print('Obrigado por jogar!')

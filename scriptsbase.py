@@ -74,16 +74,16 @@ def menudicas(listapaises,pais_sorteado,dicasusadas,tentativas,letrascap,coresba
     print('\n=$==$==$==$==$==$==$==$==$==$==$==$==$==$'+Fore.LIGHTYELLOW_EX+'  Mercado de Dicas:  '+Fore.RESET+'$==$==$==$==$==$==$==$==$==$==$==$==$==$=')
     print(Fore.LIGHTGREEN_EX+'Recomendação do dia: Dica 6 (Recomeçar caso nescessário)\n'+Fore.RESET)
     if tentativas > 4:
-        print('1. Cor da Bandeira    - custa'+Fore.LIGHTYELLOW_EX+' 4 '+Fore.RESET+'tentativas')
+        print('1. Cor da Bandeira    - custa '+Fore.LIGHTYELLOW_EX+'4 '+Fore.RESET+'tentativas')
         disp.append('1')
     if tentativas > 3:
-        print('2. Letra da Capital   - custa'+Fore.LIGHTYELLOW_EX+' 3 '+Fore.RESET+'tentativas')
+        print('2. Letra da Capital   - custa '+Fore.LIGHTYELLOW_EX+'3 '+Fore.RESET+'tentativas')
         disp.append('2')
     if tentativas > 6 and "Área: " not in dicasusadas:
         print('3. Área               - custa '+Fore.LIGHTYELLOW_EX+'6 '+Fore.RESET+'tentativas')
         disp.append('3')
     if tentativas > 5 and 'População: ' not in dicasusadas:
-        print('4. População          - custa'+Fore.LIGHTYELLOW_EX+' 5 '+Fore.RESET+'tentativas')
+        print('4. População          - custa '+Fore.LIGHTYELLOW_EX+'5 '+Fore.RESET+'tentativas')
         disp.append('4')
     if tentativas > 7 and 'Continente: ' not in dicasusadas:
         print('5. Continente         - custa '+Fore.LIGHTYELLOW_EX+'7 '+Fore.RESET+'tentativas')
